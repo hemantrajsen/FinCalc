@@ -1,0 +1,345 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Calculator,
+  Search,
+  Wallet,
+  PiggyBank,
+  TrendingUp,
+  Receipt,
+  CreditCard,
+  DollarSign,
+  Home,
+  Clock,
+  Percent,
+  Users,
+  ArrowRight,
+} from "lucide-react";
+import { Layout } from "@/components/layout/Layout";
+import { CalculatorCard } from "@/components/CalculatorCard";
+import { AdPlaceholder } from "@/components/AdPlaceholder";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+const categories = [
+  {
+    id: "loans",
+    name: "Loans & Debt",
+    icon: Wallet,
+    description: "EMI, mortgage, and debt payoff calculators",
+    color: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+  },
+  {
+    id: "savings",
+    name: "Savings & Investment",
+    icon: PiggyBank,
+    description: "Compound interest and retirement planning",
+    color: "bg-green-500/10 text-green-600 dark:text-green-400",
+  },
+  {
+    id: "tax",
+    name: "Income & Tax",
+    icon: Receipt,
+    description: "Tax estimation and salary calculations",
+    color: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
+  },
+  {
+    id: "everyday",
+    name: "Everyday Finance",
+    icon: DollarSign,
+    description: "Tips, splits, and daily calculations",
+    color: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
+  },
+];
+
+const calculators = [
+  {
+    title: "Loan/EMI Calculator",
+    description: "Calculate monthly EMI payments, total interest, and view amortization schedule",
+    icon: Wallet,
+    path: "/calculator/loan-emi",
+    category: "loans",
+    popular: true,
+  },
+  {
+    title: "Mortgage Calculator",
+    description: "Plan your home purchase with property tax and insurance estimates",
+    icon: Home,
+    path: "/calculator/mortgage",
+    category: "loans",
+    popular: true,
+  },
+  {
+    title: "Credit Card Payoff",
+    description: "Find out how long it takes to pay off your credit card balance",
+    icon: CreditCard,
+    path: "/calculator/credit-card-payoff",
+    category: "loans",
+  },
+  {
+    title: "Compound Interest",
+    description: "See how your money grows with compound interest over time",
+    icon: TrendingUp,
+    path: "/calculator/compound-interest",
+    category: "savings",
+    popular: true,
+  },
+  {
+    title: "Retirement Planner",
+    description: "Plan for retirement and calculate how much you need to save",
+    icon: PiggyBank,
+    path: "/calculator/retirement",
+    category: "savings",
+    popular: true,
+  },
+  {
+    title: "Investment Return",
+    description: "Calculate ROI and CAGR for your investments",
+    icon: Percent,
+    path: "/calculator/investment-return",
+    category: "savings",
+  },
+  {
+    title: "Salary Converter",
+    description: "Convert between hourly, weekly, monthly, and annual salary",
+    icon: Clock,
+    path: "/calculator/salary-converter",
+    category: "tax",
+  },
+  {
+    title: "Tax Estimator",
+    description: "Estimate your federal income tax based on filing status",
+    icon: Receipt,
+    path: "/calculator/tax-estimator",
+    category: "tax",
+    popular: true,
+  },
+  {
+    title: "Net Salary Calculator",
+    description: "Calculate take-home pay after taxes and deductions",
+    icon: DollarSign,
+    path: "/calculator/net-salary",
+    category: "tax",
+  },
+  {
+    title: "Tip Calculator",
+    description: "Calculate tips and split bills among friends",
+    icon: Users,
+    path: "/calculator/tip",
+    category: "everyday",
+  },
+];
+
+const Index = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredCalculators = calculators.filter(
+    (calc) =>
+      calc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      calc.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const popularCalculators = calculators.filter((calc) => calc.popular);
+
+  return (
+    <Layout>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden gradient-hero py-20 lg:py-28">
+        <div className="container relative z-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              <Calculator className="h-4 w-4" />
+              Free Financial Calculators
+            </div>
+            <h1 className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+              Smart calculators for{" "}
+              <span className="text-primary">smarter decisions</span>
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground sm:text-xl">
+              Free, accurate, and easy-to-use financial calculators. From loans to
+              retirement planning, make informed money decisions.
+            </p>
+
+            {/* Search Bar */}
+            <div className="mt-10 flex items-center gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search calculators..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="h-14 pl-12 text-base"
+                />
+              </div>
+              <Button size="lg" className="h-14 px-8">
+                Search
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute -top-24 right-0 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute -bottom-24 left-0 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+      </section>
+
+      {/* Header Ad */}
+      <div className="container flex justify-center py-8">
+        <AdPlaceholder size="banner" />
+      </div>
+
+      {/* Categories Section */}
+      <section className="py-12">
+        <div className="container">
+          <div className="mb-8 text-center">
+            <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
+              Browse by Category
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              Find the right calculator for your financial needs
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {categories.map((category) => {
+              const Icon = category.icon;
+              return (
+                <Link
+                  key={category.id}
+                  to={`/calculators/${category.id}`}
+                  className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/20 hover:shadow-soft"
+                >
+                  <div
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${category.color}`}
+                  >
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {category.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {category.description}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Calculators */}
+      <section className="py-12 bg-muted/30">
+        <div className="container">
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
+                Popular Calculators
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Our most used financial tools
+              </p>
+            </div>
+            <Link
+              to="/calculators"
+              className="hidden items-center gap-1 text-sm font-medium text-primary hover:underline sm:flex"
+            >
+              View all calculators
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {popularCalculators.map((calc) => (
+              <CalculatorCard
+                key={calc.path}
+                title={calc.title}
+                description={calc.description}
+                icon={calc.icon}
+                path={calc.path}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* All Calculators */}
+      <section className="py-12">
+        <div className="container">
+          <div className="mb-8">
+            <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
+              {searchQuery ? "Search Results" : "All Calculators"}
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              {searchQuery
+                ? `${filteredCalculators.length} calculator${
+                    filteredCalculators.length !== 1 ? "s" : ""
+                  } found`
+                : "Complete collection of financial calculators"}
+            </p>
+          </div>
+
+          {filteredCalculators.length > 0 ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredCalculators.map((calc) => (
+                <CalculatorCard
+                  key={calc.path}
+                  title={calc.title}
+                  description={calc.description}
+                  icon={calc.icon}
+                  path={calc.path}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <Calculator className="h-12 w-12 text-muted-foreground/50" />
+              <h3 className="mt-4 font-display font-semibold text-foreground">
+                No calculators found
+              </h3>
+              <p className="mt-2 text-muted-foreground">
+                Try adjusting your search query
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Inline Ad */}
+      <div className="container flex justify-center py-8">
+        <AdPlaceholder size="inline" />
+      </div>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-primary/5">
+        <div className="container text-center">
+          <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            Make smarter financial decisions today
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            Our calculators are free, accurate, and designed to help you
+            understand your finances better. No sign-up required.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link to="/calculator/loan-emi">
+              <Button size="lg" className="gap-2">
+                <Calculator className="h-5 w-5" />
+                Try Loan Calculator
+              </Button>
+            </Link>
+            <Link to="/calculator/compound-interest">
+              <Button size="lg" variant="outline" className="gap-2">
+                <TrendingUp className="h-5 w-5" />
+                Try Investment Calculator
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default Index;
