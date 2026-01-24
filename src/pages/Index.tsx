@@ -189,7 +189,7 @@ const Index = () => {
             </p>
 
             {/* Search Bar */}
-            <form className="mt-10 flex items-center gap-3" onSubmit={handleSearchSubmit}>
+            <form className="mt-12 mb-8 flex items-center gap-4" onSubmit={handleSearchSubmit}>
               <div className="relative flex-1">
                 <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
                 <Input
