@@ -276,7 +276,7 @@ const Index = () => {
               return (
                 <Link
                   key={category.id}
-                  to={`/calculators/${category.id}`}
+                  to={`/#${category.id}`}
                   className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/20 hover:shadow-soft"
                 >
                   <div
@@ -352,17 +352,62 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {resultsCalculators.map((calc) => (
-              <CalculatorCard
-                key={calc.path}
-                title={calc.title}
-                description={calc.description}
-                icon={calc.icon}
-                path={calc.path}
-              />
-            ))}
-          </div>
+          {searchQuery ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {resultsCalculators.map((calc) => (
+                <CalculatorCard
+                  key={calc.path}
+                  title={calc.title}
+                  description={calc.description}
+                  icon={calc.icon}
+                  path={calc.path}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-16">
+              {categories.map((category) => {
+                const categoryCalculators = calculators.filter(
+                  (calc) => calc.category === category.id
+                );
+                const Icon = category.icon;
+                return (
+                  <div
+                    key={category.id}
+                    id={category.id}
+                    className="scroll-mt-24"
+                  >
+                    <div className="mb-6 flex items-center gap-3">
+                      <div
+                        className={`flex h-10 w-10 items-center justify-center rounded-xl ${category.color}`}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-xl font-bold text-foreground">
+                          {category.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {category.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                      {categoryCalculators.map((calc) => (
+                        <CalculatorCard
+                          key={calc.path}
+                          title={calc.title}
+                          description={calc.description}
+                          icon={calc.icon}
+                          path={calc.path}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
