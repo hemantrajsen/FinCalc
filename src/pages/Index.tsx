@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Calculator,
@@ -132,12 +132,40 @@ const calculators = [
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const blurTimeoutRef = useRef<number | null>(null);
 
-  const filteredCalculators = calculators.filter(
-    (calc) =>
-      calc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      calc.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleSearchFocus = () => {
+    if (blurTimeoutRef.current) {
+      window.clearTimeout(blurTimeoutRef.current);
+      blurTimeoutRef.current = null;
+    }
+    setIsSearchOpen(true);
+  };
+
+  const handleSearchBlur = () => {
+    blurTimeoutRef.current = window.setTimeout(() => {
+      setIsSearchOpen(false);
+    }, 120);
+  };
+
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const filteredCalculators = normalizedQuery
+    ? calculators.filter(
+        (calc) =>
+          calc.title.toLowerCase().includes(normalizedQuery) ||
+          calc.description.toLowerCase().includes(normalizedQuery)
+      )
+    : calculators;
+
+  const showFallbackAll = normalizedQuery.length > 0 && filteredCalculators.length === 0;
+  const resultsCalculators = showFallbackAll ? calculators : filteredCalculators;
 
   const popularCalculators = calculators.filter((calc) => calc.popular);
 
@@ -161,21 +189,62 @@ const Index = () => {
             </p>
 
             {/* Search Bar */}
-            <div className="mt-10 flex items-center gap-3">
+            <form className="mt-10 flex items-center gap-3" onSubmit={handleSearchSubmit}>
               <div className="relative flex-1">
                 <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   type="text"
                   placeholder="Search calculators..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setIsSearchOpen(true);
+                  }}
+                  onFocus={handleSearchFocus}
+                  onBlur={handleSearchBlur}
                   className="h-14 pl-12 text-base"
                 />
+                {isSearchOpen && resultsCalculators.length > 0 && (
+                  <div
+                    className="absolute left-0 right-0 z-20 mt-2 max-h-80 overflow-auto rounded-2xl border border-border bg-card shadow-lg"
+                    onMouseDown={(event) => event.preventDefault()}
+                  >
+                    {showFallbackAll && (
+                      <div className="px-4 py-3 text-sm text-muted-foreground">
+                        No exact matches — showing all calculators
+                      </div>
+                    )}
+                    <div className="divide-y divide-border">
+                      {resultsCalculators.map((calc) => {
+                        const Icon = calc.icon;
+                        return (
+                          <Link
+                            key={calc.path}
+                            to={calc.path}
+                            className="flex items-start gap-3 px-4 py-3 transition-colors hover:bg-muted/60"
+                          >
+                            <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                              <Icon className="h-4 w-4" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium text-foreground">
+                                {calc.title}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                {calc.description}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
-              <Button size="lg" className="h-14 px-8">
+              <Button type="submit" size="lg" className="h-14 px-8">
                 Search
               </Button>
-            </div>
+            </form>
           </div>
         </div>
 
@@ -266,7 +335,7 @@ const Index = () => {
       </section>
 
       {/* All Calculators */}
-      <section className="py-12">
+      <section className="py-12" ref={resultsRef} id="calculator-results">
         <div className="container">
           <div className="mb-8">
             <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
@@ -274,36 +343,26 @@ const Index = () => {
             </h2>
             <p className="mt-2 text-muted-foreground">
               {searchQuery
-                ? `${filteredCalculators.length} calculator${
-                    filteredCalculators.length !== 1 ? "s" : ""
-                  } found`
+                ? showFallbackAll
+                  ? "No exact matches — showing all calculators"
+                  : `${filteredCalculators.length} calculator${
+                      filteredCalculators.length !== 1 ? "s" : ""
+                    } found`
                 : "Complete collection of financial calculators"}
             </p>
           </div>
 
-          {filteredCalculators.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {filteredCalculators.map((calc) => (
-                <CalculatorCard
-                  key={calc.path}
-                  title={calc.title}
-                  description={calc.description}
-                  icon={calc.icon}
-                  path={calc.path}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Calculator className="h-12 w-12 text-muted-foreground/50" />
-              <h3 className="mt-4 font-display font-semibold text-foreground">
-                No calculators found
-              </h3>
-              <p className="mt-2 text-muted-foreground">
-                Try adjusting your search query
-              </p>
-            </div>
-          )}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {resultsCalculators.map((calc) => (
+              <CalculatorCard
+                key={calc.path}
+                title={calc.title}
+                description={calc.description}
+                icon={calc.icon}
+                path={calc.path}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
