@@ -18,8 +18,8 @@ const InvestmentReturn = () => {
       <Card>
         <CardHeader><CardTitle className="font-display">Investment Details</CardTitle></CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-3">
-          <InputField label="Initial Investment" id="initial" value={initial} onChange={setInitial} prefix="$" />
-          <InputField label="Final Value" id="final" value={final} onChange={setFinal} prefix="$" />
+          <InputField label="Initial Investment" id="initial" value={initial} onChange={setInitial} prefix="₹" />
+          <InputField label="Final Value" id="final" value={final} onChange={setFinal} prefix="₹" />
           <InputField label="Time Period (Years)" id="years" value={years} onChange={setYears} suffix="yr" />
         </CardContent>
       </Card>

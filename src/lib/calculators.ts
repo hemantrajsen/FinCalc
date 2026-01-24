@@ -306,7 +306,7 @@ export const calculateTip = (
 export const formatCurrency = (amount: number, decimals: number = 2) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
+    currency: "INR",
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   }).format(amount);

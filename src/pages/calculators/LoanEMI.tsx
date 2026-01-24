@@ -29,7 +29,7 @@ const LoanEMI = () => {
           <CardTitle className="font-display">Loan Details</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-3">
-          <InputField label="Loan Amount" id="principal" value={principal} onChange={setPrincipal} prefix="$" />
+          <InputField label="Loan Amount" id="principal" value={principal} onChange={setPrincipal} prefix="₹" />
           <InputField label="Interest Rate (Annual)" id="rate" value={rate} onChange={setRate} suffix="%" step={0.1} />
           <InputField label="Loan Tenure (Months)" id="tenure" value={tenure} onChange={setTenure} suffix="mo" />
         </CardContent>

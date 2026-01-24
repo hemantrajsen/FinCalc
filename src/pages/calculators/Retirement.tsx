@@ -29,8 +29,8 @@ const Retirement = () => {
         <CardContent className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           <InputField label="Current Age" id="currentAge" value={currentAge} onChange={setCurrentAge} />
           <InputField label="Retirement Age" id="retirementAge" value={retirementAge} onChange={setRetirementAge} />
-          <InputField label="Current Savings" id="currentSavings" value={currentSavings} onChange={setCurrentSavings} prefix="$" />
-          <InputField label="Monthly Contribution" id="monthlyContribution" value={monthlyContribution} onChange={setMonthlyContribution} prefix="$" />
+          <InputField label="Current Savings" id="currentSavings" value={currentSavings} onChange={setCurrentSavings} prefix="₹" />
+          <InputField label="Monthly Contribution" id="monthlyContribution" value={monthlyContribution} onChange={setMonthlyContribution} prefix="₹" />
           <InputField label="Annual Return" id="annualReturn" value={annualReturn} onChange={setAnnualReturn} suffix="%" step={0.1} />
         </CardContent>
       </Card>
@@ -50,7 +50,7 @@ const Retirement = () => {
               <AreaChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                 <XAxis dataKey="age" stroke="hsl(var(--muted-foreground))" />
-                <YAxis stroke="hsl(var(--muted-foreground))" tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} />
+                <YAxis stroke="hsl(var(--muted-foreground))" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
                 <Tooltip formatter={(value: number) => formatCurrency(value)} />
                 <Area type="monotone" dataKey="savings" stroke="hsl(168, 76%, 42%)" fill="hsl(168, 76%, 42%)" fillOpacity={0.3} name="Total Savings" />
               </AreaChart>

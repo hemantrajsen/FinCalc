@@ -45,6 +45,21 @@ export const Header = () => {
               {cat.name}
             </Link>
           ))}
+
+          <div className="h-5 w-px bg-border" />
+
+          <Link
+            to="/privacy"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Privacy
+          </Link>
+          <Link
+            to="/terms"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Terms
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -83,6 +98,23 @@ export const Header = () => {
                 {cat.name}
               </Link>
             ))}
+
+            <div className="my-2 h-px bg-border" />
+
+            <Link
+              to="/privacy"
+              className="rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms"
+              className="rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Terms of Service
+            </Link>
           </nav>
         </div>
       )}

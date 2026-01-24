@@ -19,9 +19,9 @@ const CreditCardPayoff = () => {
       <Card>
         <CardHeader><CardTitle className="font-display">Credit Card Details</CardTitle></CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-3">
-          <InputField label="Current Balance" id="balance" value={balance} onChange={setBalance} prefix="$" />
+          <InputField label="Current Balance" id="balance" value={balance} onChange={setBalance} prefix="₹" />
           <InputField label="Interest Rate (APR)" id="rate" value={rate} onChange={setRate} suffix="%" step={0.01} />
-          <InputField label="Monthly Payment" id="payment" value={payment} onChange={setPayment} prefix="$" />
+          <InputField label="Monthly Payment" id="payment" value={payment} onChange={setPayment} prefix="₹" />
         </CardContent>
       </Card>
 

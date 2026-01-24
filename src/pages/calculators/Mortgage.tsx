@@ -26,8 +26,8 @@ const Mortgage = () => {
       <Card>
         <CardHeader><CardTitle className="font-display">Property Details</CardTitle></CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <InputField label="Home Price" id="homePrice" value={homePrice} onChange={setHomePrice} prefix="$" />
-          <InputField label="Down Payment" id="downPayment" value={downPayment} onChange={setDownPayment} prefix="$" />
+          <InputField label="Home Price" id="homePrice" value={homePrice} onChange={setHomePrice} prefix="₹" />
+          <InputField label="Down Payment" id="downPayment" value={downPayment} onChange={setDownPayment} prefix="₹" />
           <InputField label="Interest Rate" id="rate" value={rate} onChange={setRate} suffix="%" step={0.1} />
           <InputField label="Loan Term (Years)" id="term" value={term} onChange={setTerm} suffix="yr" />
         </CardContent>

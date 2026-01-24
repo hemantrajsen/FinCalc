@@ -19,7 +19,7 @@ const TaxEstimator = () => {
       <Card>
         <CardHeader><CardTitle className="font-display">Income Details</CardTitle></CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-2">
-          <InputField label="Annual Income" id="income" value={income} onChange={setIncome} prefix="$" />
+          <InputField label="Annual Income" id="income" value={income} onChange={setIncome} prefix="₹" />
           <div className="space-y-2">
             <Label>Filing Status</Label>
             <Select value={filingStatus} onValueChange={(v) => setFilingStatus(v as "single" | "married")}>

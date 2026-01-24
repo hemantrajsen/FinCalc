@@ -20,7 +20,7 @@ const SalaryConverter = () => {
       <Card>
         <CardHeader><CardTitle className="font-display">Salary Details</CardTitle></CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-3">
-          <InputField label="Amount" id="amount" value={amount} onChange={setAmount} prefix="$" />
+          <InputField label="Amount" id="amount" value={amount} onChange={setAmount} prefix="₹" />
           <div className="space-y-2">
             <Label>Salary Type</Label>
             <Select value={fromType} onValueChange={(v) => setFromType(v as "hourly" | "annual")}>

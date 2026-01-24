@@ -30,10 +30,10 @@ const NetSalary = () => {
       <Card>
         <CardHeader><CardTitle className="font-display">Salary & Deductions</CardTitle></CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <InputField label="Gross Annual Salary" id="gross" value={gross} onChange={setGross} prefix="$" />
+          <InputField label="Gross Annual Salary" id="gross" value={gross} onChange={setGross} prefix="₹" />
           <InputField label="State Tax Rate" id="stateTax" value={stateTax} onChange={setStateTax} suffix="%" step={0.1} />
           <InputField label="401(k) Contribution" id="retirement" value={retirement} onChange={setRetirement} suffix="%" step={0.5} />
-          <InputField label="Health Insurance (Monthly)" id="healthInsurance" value={healthInsurance} onChange={setHealthInsurance} prefix="$" />
+          <InputField label="Health Insurance (Monthly)" id="healthInsurance" value={healthInsurance} onChange={setHealthInsurance} prefix="₹" />
         </CardContent>
       </Card>
 

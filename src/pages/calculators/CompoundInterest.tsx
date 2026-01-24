@@ -24,7 +24,7 @@ const CompoundInterest = () => {
       <Card>
         <CardHeader><CardTitle className="font-display">Investment Details</CardTitle></CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-3">
-          <InputField label="Principal Amount" id="principal" value={principal} onChange={setPrincipal} prefix="$" />
+          <InputField label="Principal Amount" id="principal" value={principal} onChange={setPrincipal} prefix="₹" />
           <InputField label="Annual Interest Rate" id="rate" value={rate} onChange={setRate} suffix="%" step={0.1} />
           <InputField label="Time Period (Years)" id="years" value={years} onChange={setYears} suffix="yr" />
         </CardContent>
@@ -44,7 +44,7 @@ const CompoundInterest = () => {
               <AreaChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                 <XAxis dataKey="year" stroke="hsl(var(--muted-foreground))" />
-                <YAxis stroke="hsl(var(--muted-foreground))" tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} />
+                <YAxis stroke="hsl(var(--muted-foreground))" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
                 <Tooltip formatter={(value: number) => formatCurrency(value)} />
                 <Area type="monotone" dataKey="principal" stackId="1" stroke="hsl(var(--muted-foreground))" fill="hsl(var(--muted))" name="Principal" />
                 <Area type="monotone" dataKey="total" stackId="2" stroke="hsl(168, 76%, 42%)" fill="hsl(168, 76%, 42%)" fillOpacity={0.3} name="Total Value" />

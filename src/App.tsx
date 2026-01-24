@@ -15,6 +15,8 @@ import SalaryConverter from "./pages/calculators/SalaryConverter";
 import TaxEstimator from "./pages/calculators/TaxEstimator";
 import NetSalary from "./pages/calculators/NetSalary";
 import TipCalculator from "./pages/calculators/TipCalculator";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +38,8 @@ const App = () => (
           <Route path="/calculator/tax-estimator" element={<TaxEstimator />} />
           <Route path="/calculator/net-salary" element={<NetSalary />} />
           <Route path="/calculator/tip" element={<TipCalculator />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

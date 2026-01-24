@@ -22,7 +22,7 @@ const TipCalculator = () => {
         <CardHeader><CardTitle className="font-display">Bill Details</CardTitle></CardHeader>
         <CardContent className="space-y-6">
           <div className="grid gap-6 sm:grid-cols-3">
-            <InputField label="Bill Amount" id="bill" value={bill} onChange={setBill} prefix="$" />
+            <InputField label="Bill Amount" id="bill" value={bill} onChange={setBill} prefix="₹" />
             <InputField label="Tip Percentage" id="tipPercent" value={tipPercent} onChange={setTipPercent} suffix="%" />
             <InputField label="Number of People" id="people" value={people} onChange={setPeople} min={1} />
           </div>
