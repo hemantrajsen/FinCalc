@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { ReactNode, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import { AdPlaceholder } from "@/components/AdPlaceholder";
 
@@ -14,6 +14,13 @@ export const CalculatorLayout = ({
   description,
   children,
 }: CalculatorLayoutProps) => {
+  const location = useLocation();
+
+  // Scroll to top when calculator page opens
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className="container py-8">
       {/* Header Ad */}

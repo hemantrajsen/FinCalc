@@ -10,6 +10,14 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
 
+  // Scroll to top on route change (when no hash)
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
+  // Scroll to hash element if present
   useEffect(() => {
     if (!location.hash) return;
 
