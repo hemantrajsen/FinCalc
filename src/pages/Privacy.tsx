@@ -12,7 +12,7 @@ const Privacy = () => {
 
           <div className="prose prose-zinc mt-8 max-w-none dark:prose-invert">
             <p>
-              This Privacy Policy explains how FinCalc collects, uses, and protects information when
+              This Privacy Policy explains how ArthaCalc collects, uses, and protects information when
               you use this website.
             </p>
             <h2>Information we collect</h2>

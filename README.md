@@ -1,4 +1,4 @@
-# FinCalc - Financial Calculators
+# ArthaCalc - Smart Financial Calculators
 
 Smart calculators for smarter financial decisions. Free, accurate, and easy to use.
 

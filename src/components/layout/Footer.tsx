@@ -30,7 +30,7 @@ export const Footer = () => {
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                 <Calculator className="h-5 w-5" />
               </div>
-              <span className="font-display text-xl font-bold">FinCalc</span>
+              <span className="font-display text-xl font-bold">ArthaCalc</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Smart calculators for smarter financial decisions. Free, accurate, and easy to use.
@@ -81,7 +81,7 @@ export const Footer = () => {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} FinCalc. All rights reserved.
+            © {currentYear} ArthaCalc. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary">

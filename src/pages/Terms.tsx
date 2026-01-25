@@ -12,7 +12,7 @@ const Terms = () => {
 
           <div className="prose prose-zinc mt-8 max-w-none dark:prose-invert">
             <p>
-              These Terms of Service govern your use of FinCalc. By using the site, you agree to
+              These Terms of Service govern your use of ArthaCalc. By using the site, you agree to
               these terms.
             </p>
             <h2>Educational use</h2>
@@ -22,12 +22,12 @@ const Terms = () => {
             </p>
             <h2>No warranties</h2>
             <p>
-              FinCalc is provided “as is” without warranties of any kind. We do not guarantee the
+              ArthaCalc is provided "as is" without warranties of any kind. We do not guarantee the
               accuracy, completeness, or suitability of the results for your situation.
             </p>
             <h2>Limitation of liability</h2>
             <p>
-              To the maximum extent permitted by law, FinCalc will not be liable for any damages
+              To the maximum extent permitted by law, ArthaCalc will not be liable for any damages
               arising from your use of the site.
             </p>
             <h2>Changes</h2>

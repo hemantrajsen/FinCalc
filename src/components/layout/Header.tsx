@@ -31,7 +31,7 @@ export const Header = () => {
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
             <Calculator className="h-5 w-5" />
           </div>
-          <span className="font-display text-xl font-bold text-foreground">FinCalc</span>
+          <span className="font-display text-xl font-bold text-foreground">ArthaCalc</span>
         </Link>
 
         {/* Desktop Navigation */}
