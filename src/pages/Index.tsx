@@ -255,7 +255,7 @@ const Index = () => {
 
       {/* Header Ad */}
       <div className="container flex justify-center py-8">
-        <AdPlaceholder size="banner" />
+        <AdPlaceholder size="banner" adSlot="7683343344"/>
       </div>
 
       {/* Categories Section */}
@@ -413,7 +413,7 @@ const Index = () => {
 
       {/* Inline Ad */}
       <div className="container flex justify-center py-8">
-        <AdPlaceholder size="inline" />
+        <AdPlaceholder size="inline" adSlot="7253982408" />
       </div>
 
       {/* CTA Section */}

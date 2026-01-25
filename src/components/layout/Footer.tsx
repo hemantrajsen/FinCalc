@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { AdPlaceholder } from "../AdPlaceholder";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -72,9 +73,7 @@ export const Footer = () => {
 
           {/* Ad Placeholder */}
           <div className="flex items-start justify-center lg:justify-end">
-            <div className="flex h-[250px] w-[300px] items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/50">
-              <span className="text-xs text-muted-foreground">Ad Space (300x250)</span>
-            </div>
+            <AdPlaceholder size="footer" adSlot="5922048426"/>
           </div>
         </div>
 

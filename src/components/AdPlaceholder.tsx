@@ -1,6 +1,10 @@
+import { useEffect } from "react";
+
 interface AdPlaceholderProps {
   size: "banner" | "sidebar" | "inline" | "footer";
   className?: string;
+  adSlot?: string;
+  adClient?: string;
 }
 
 const sizeClasses = {
@@ -17,14 +21,46 @@ const sizeLabels = {
   footer: "300x250",
 };
 
-export const AdPlaceholder = ({ size, className = "" }: AdPlaceholderProps) => {
+export const AdPlaceholder = ({
+  size,
+  className = "",
+  adSlot,
+  adClient = "ca-pub-3155600583808282",
+}: AdPlaceholderProps) => {
+  useEffect(() => {
+    if (adSlot && adClient) {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (err) {
+        console.error("AdSense error:", err);
+      }
+    }
+  }, [adSlot, adClient]);
+
+  if (!adSlot) {
+    return (
+      <div
+        className={`flex items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/30 ${sizeClasses[size]} ${className}`}
+      >
+        <span className="text-xs text-muted-foreground">
+          Ad Space ({sizeLabels[size]})
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`flex items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/30 ${sizeClasses[size]} ${className}`}
+      className={`flex items-center justify-center overflow-hidden bg-transparent ${sizeClasses[size]} ${className}`}
     >
-      <span className="text-xs text-muted-foreground">
-        Ad Space ({sizeLabels[size]})
-      </span>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block", width: "100%", height: "100%" }}
+        data-ad-client={adClient}
+        data-ad-slot={adSlot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
     </div>
   );
 };
