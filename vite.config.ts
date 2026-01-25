@@ -15,4 +15,16 @@ export default defineConfig({
     },
   },
   base: process.env.VITE_BASE_PATH || "/",
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000, // Optional: Increases the limit to 1000kB
+  },
 });
