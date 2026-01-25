@@ -6,8 +6,14 @@ node_modules/
 dist/
 dist-ssr/
 
+# Vercel
+.vercel/
+
 # Vite cache
 .vite/
+
+# Caches
+.eslintcache
 
 # Logs
 *.log
@@ -21,6 +27,11 @@ pnpm-debug.log*
 .env.*
 !.env.example
 
+# NPM/Yarn auth (may contain tokens)
+.npmrc
+.yarnrc
+.yarnrc.yml
+
 # OS files
 .DS_Store
 
@@ -31,8 +42,21 @@ pnpm-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 
+.idea/
+.fleet/
+
 # Coverage
 coverage/
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Certificates / keys
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.keystore
+certs/
