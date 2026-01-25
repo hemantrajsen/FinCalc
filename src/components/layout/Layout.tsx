@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { Analytics } from "@vercel/analytics/next"
 
 interface LayoutProps {
   children: ReactNode;
