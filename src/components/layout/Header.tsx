@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Calculator, Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
@@ -28,8 +28,8 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <Calculator className="h-5 w-5" />
+          <div className="flex h-9 w-9 items-center justify-center overflow-hidden">
+            <img src="/ArthaCalc.png" alt="ArthaCalc Logo" className="h-full w-full object-cover" />
           </div>
           <span className="font-display text-xl font-bold text-foreground">ArthaCalc</span>
         </Link>

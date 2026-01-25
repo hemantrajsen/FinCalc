@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Calculator } from "lucide-react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,8 +26,8 @@ export const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                <Calculator className="h-5 w-5" />
+              <div className="flex h-9 w-9 items-center justify-center overflow-hidden">
+                <img src="/ArthaCalc.png" alt="ArthaCalc Logo" className="h-full w-full object-cover" />
               </div>
               <span className="font-display text-xl font-bold">ArthaCalc</span>
             </Link>
