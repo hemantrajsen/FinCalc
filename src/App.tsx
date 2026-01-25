@@ -13,10 +13,12 @@ import Retirement from "./pages/calculators/Retirement";
 import InvestmentReturn from "./pages/calculators/InvestmentReturn";
 import SalaryConverter from "./pages/calculators/SalaryConverter";
 import TaxEstimator from "./pages/calculators/TaxEstimator";
+import { Analytics } from "@vercel/analytics/react";
 import NetSalary from "./pages/calculators/NetSalary";
 import TipCalculator from "./pages/calculators/TipCalculator";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <Analytics />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
